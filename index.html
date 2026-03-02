@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watermark Pro | Add Logos & Text with Precision</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@400;500;600;700&family=Caveat:wght@400..700&family=Dancing+Script:wght@400..700&family=Pacifico&family=Bungee&family=Roboto+Mono&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+
+<body>
+    <div class="app-background">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="app-container">
+        <!-- HEADER -->
+        <header class="glass-header">
+            <div class="logo-area">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" class="brand-icon">
+                    <path
+                        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                        stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M12 16L16 12L12 8" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M8 12H16" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <defs>
+                        <linearGradient id="paint0_linear" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#38bdf8" />
+                            <stop offset="1" stop-color="#818cf8" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span class="gradient-text">Watermark Pro</span>
+            </div>
+            <div class="header-actions">
+                <label for="theme-toggle" class="theme-switch" aria-label="Toggle Theme">
+                    <input type="checkbox" id="theme-toggle" checked>
+                    <div class="theme-slider">
+                        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </div>
+                </label>
+            </div>
+        </header>
+
+        <main>
+            <!-- CONTROLS PANEL -->
+            <section class="controls-panel card glass-panel">
+                <div class="tabs-container">
+                    <div class="tabs">
+                        <button class="tab-btn active" data-tab="images">
+                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2"
+                                fill="none">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                <polyline points="21 15 16 10 5 21"></polyline>
+                            </svg>
+                            Pictures
+                        </button>
+                        <button class="tab-btn" data-tab="watermark">
+                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2"
+                                fill="none">
+                                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                <polyline points="2 17 12 22 22 17"></polyline>
+                                <polyline points="2 12 12 17 22 12"></polyline>
+                            </svg>
+                            Watermark
+                        </button>
+                        <button class="tab-btn" data-tab="export">
+                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2"
+                                fill="none">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            Export
+                        </button>
+                        <div class="tab-indicator" id="tab-indicator"></div>
+                    </div>
+                </div>
+
+                <div class="tab-content active" id="images">
+                    <div class="upload-zone interactive-zone" id="pic-upload-zone">
+                        <input type="file" id="pic-input" multiple accept="image/*" hidden>
+                        <div class="upload-content">
+                            <div class="upload-icon-wrapper">
+                                <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2"
+                                    fill="none">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                            </div>
+                            <h3>Upload Pictures</h3>
+                            <p>Drag & drop or <span class="text-accent">browse files</span></p>
+                        </div>
+                    </div>
+                    <div class="file-list-container">
+                        <div class="section-header">
+                            <p class="section-title">Batch List</p>
+                            <span class="badge" id="pic-count">0</span>
+                        </div>
+                        <ul id="file-list" class="file-list scrollbar-custom"></ul>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="watermark">
+                    <div class="scrollable-tab scrollbar-custom">
+                        <!-- Logo Config -->
+                        <div class="wm-config-section glass-box">
+                            <div class="section-header toggler">
+                                <p class="section-title"><svg viewBox="0 0 24 24" width="18" height="18"
+                                        stroke="currentColor" stroke-width="2" fill="none">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                        <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                        <polyline points="21 15 16 10 5 21"></polyline>
+                                    </svg> Logo Watermark</p>
+                            </div>
+                            <div class="setting-group" id="logo-setting">
+                                <div class="upload-zone-compact interactive-zone" id="logo-upload-zone">
+                                    <input type="file" id="logo-input" accept="image/*" hidden>
+                                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor"
+                                        stroke-width="2" fill="none">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="17 8 12 3 7 8"></polyline>
+                                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                                    </svg>
+                                    <span>Click or drag to select logo</span>
+                                </div>
+                                <div id="logo-preview-container" class="preview-thumb-box hidden">
+                                    <img id="logo-thumb" src="" alt="logo preview">
+                                    <button id="remove-logo" class="btn-icon" title="Remove Logo">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor"
+                                            stroke-width="2" fill="none">
+                                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="setting-group">
+                                <label>Logo Position</label>
+                                <div class="position-selector" id="logo-pos-grid">
+                                    <div class="pos-canvas">
+                                        <button class="pos-btn" data-pos="tl" aria-label="Top Left"></button>
+                                        <button class="pos-btn" data-pos="tc" aria-label="Top Center"></button>
+                                        <button class="pos-btn" data-pos="tr" aria-label="Top Right"></button>
+                                        <button class="pos-btn" data-pos="ml" aria-label="Middle Left"></button>
+                                        <button class="pos-btn active" data-pos="cc"
+                                            aria-label="Center Center"></button>
+                                        <button class="pos-btn" data-pos="mr" aria-label="Middle Right"></button>
+                                        <button class="pos-btn" data-pos="bl" aria-label="Bottom Left"></button>
+                                        <button class="pos-btn" data-pos="bc" aria-label="Bottom Center"></button>
+                                        <button class="pos-btn" data-pos="br" aria-label="Bottom Right"></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid-2">
+                                <div class="setting-group range-group">
+                                    <div class="label-row"><label>Size</label> <span class="val-badge"
+                                            id="logo-size-val">20%</span></div>
+                                    <input type="range" id="logo-size" class="custom-range" min="5" max="100"
+                                        value="20">
+                                </div>
+                                <div class="setting-group range-group">
+                                    <div class="label-row"><label>Opacity</label> <span class="val-badge"
+                                            id="logo-opacity-val">0.8</span></div>
+                                    <input type="range" id="logo-opacity" class="custom-range" min="0.1" max="1"
+                                        step="0.1" value="0.8">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Text Config -->
+                        <div class="wm-config-section glass-box mt-4">
+                            <div class="section-header toggler">
+                                <p class="section-title"><svg viewBox="0 0 24 24" width="18" height="18"
+                                        stroke="currentColor" stroke-width="2" fill="none">
+                                        <polyline points="4 7 4 4 20 4 20 7"></polyline>
+                                        <line x1="9" y1="20" x2="15" y2="20"></line>
+                                        <line x1="12" y1="4" x2="12" y2="20"></line>
+                                    </svg> Text Watermark</p>
+                            </div>
+                            <div class="setting-group" id="text-setting">
+                                <div class="input-with-icon">
+                                    <input type="text" id="wm-text" class="custom-input"
+                                        placeholder="Type your watermark text...">
+                                </div>
+                                <div class="sub-settings mt-3">
+                                    <div class="color-picker-wrapper">
+                                        <input type="color" id="wm-color" class="custom-color" value="#ffffff">
+                                    </div>
+                                    <div class="select-wrapper">
+                                        <select id="wm-font" class="custom-select">
+                                            <option value="Outfit">Outfit (Clean)</option>
+                                            <option value="Playfair Display">Playfair (Elegant)</option>
+                                            <option value="Montserrat">Montserrat (Modern)</option>
+                                            <option value="Dancing Script">Dancing Script (Script)</option>
+                                            <option value="Caveat">Caveat (Handwritten)</option>
+                                            <option value="Pacifico">Pacifico (Fun)</option>
+                                            <option value="Bungee">Bungee (Bold)</option>
+                                            <option value="Roboto Mono">Mono (Tech)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="setting-group">
+                                <label>Text Position</label>
+                                <div class="position-selector" id="text-pos-grid">
+                                    <div class="pos-canvas">
+                                        <button class="pos-btn" data-pos="tl"></button>
+                                        <button class="pos-btn" data-pos="tc"></button>
+                                        <button class="pos-btn" data-pos="tr"></button>
+                                        <button class="pos-btn" data-pos="ml"></button>
+                                        <button class="pos-btn" data-pos="cc"></button>
+                                        <button class="pos-btn" data-pos="mr"></button>
+                                        <button class="pos-btn" data-pos="bl"></button>
+                                        <button class="pos-btn" data-pos="bc"></button>
+                                        <button class="pos-btn active" data-pos="br"></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid-2">
+                                <div class="setting-group range-group">
+                                    <div class="label-row"><label>Size</label> <span class="val-badge"
+                                            id="text-size-val">10%</span></div>
+                                    <input type="range" id="text-size" class="custom-range" min="1" max="50" value="10">
+                                </div>
+                                <div class="setting-group range-group">
+                                    <div class="label-row"><label>Opacity</label> <span class="val-badge"
+                                            id="text-opacity-val">0.8</span></div>
+                                    <input type="range" id="text-opacity" class="custom-range" min="0.1" max="1"
+                                        step="0.1" value="0.8">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="export">
+                    <div class="export-actions glass-box">
+                        <div class="export-icon-wrapper mb-3">
+                            <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5"
+                                fill="none">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                        </div>
+                        <h3 class="text-center mb-1">Ready to Export</h3>
+                        <p class="text-secondary text-center mb-4">Process your images and download the batch in a ZIP
+                            archive.</p>
+
+                        <button id="process-btn" class="btn-primary btn-glow">
+                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2"
+                                fill="none" class="mr-2">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                            Process All Images
+                        </button>
+
+                        <div class="progress-box hidden" id="progress-container">
+                            <div class="progress-info">
+                                <span>Processing...</span>
+                                <span id="progress-text" class="progress-percent">0%</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-bar-fill" id="progress-bar"></div>
+                            </div>
+                        </div>
+                        <button id="download-zip" class="btn-secondary hidden mt-3">
+                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2"
+                                fill="none" class="mr-2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Download ZIP
+                        </button>
+                    </div>
+                    <div class="output-preview-gallery mt-4">
+                        <div class="section-header">
+                            <p class="section-title">Processed Results</p>
+                        </div>
+                        <div id="results-grid" class="results-grid scrollbar-custom"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PREVIEW PANEL -->
+            <section class="preview-panel card glass-panel">
+                <div class="preview-header">
+                    <div class="preview-info">
+                        <p class="section-title mb-0">Live Preview</p>
+                        <span class="badge badge-secondary" id="preview-filename">No image selected</span>
+                    </div>
+                    <div class="preview-tools">
+                        <div class="mockup-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-canvas-container-outer">
+                    <div class="preview-canvas-container" id="preview-wrapper">
+                        <canvas id="preview-canvas"></canvas>
+                        <div id="no-preview" class="no-preview-msg">
+                            <div class="empty-state-icon">
+                                <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5"
+                                    fill="none">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                    <polyline points="21 15 16 10 5 21"></polyline>
+                                </svg>
+                            </div>
+                            <h3>No Preview Available</h3>
+                            <p>Upload a picture to see live watermark changes</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
